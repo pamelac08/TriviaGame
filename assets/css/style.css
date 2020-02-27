@@ -1,0 +1,37 @@
+.jumbotron {
+    background-color: beige;
+    color: black;
+}
+body {
+    background-color: lightgrey;
+}
+
+#container,
+#results {
+    text-align: center;
+    background-color: white;
+    height: 600px;
+    width: 800px;
+}
+
+#timeRemaining,
+#question {
+    padding: 20px;
+    text-align: center;
+}
+
+#timeRemaining {
+    background-color: darkgrey;
+}
+
+#question {
+    background-color: darkseagreen;
+    padding-bottom: 40px;
+}
+
+.answer {
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    width: 500px;
+}
