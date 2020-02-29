@@ -4,26 +4,28 @@
     background-image: url(../images/coffee_banner3.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    /* margin-bottom: 5px; */
+    margin-bottom: 10px;
     text-align: center;
-    
+    padding-bottom: 0;
 }
+
 body {
-    background-image: url(../images/coffee_color_bkg.jpg);
+    background: url(../images/coffee_color_bkg.jpg) 30%;
 }
 
 .display-4 {
     color: white;
-    font-size: 3rem;
+    font-size: 4rem;
     font-family: cursive;
 }
 
 #startButton, 
 #restartButton {
-    margin-top: 25px;
-    padding: 10px 30px 10px 30px;
+    margin-top: 15px;
+    padding: 5px 30px 5px 30px;
     font-size: 25px;
 }
+
 
 #container {
     height: 750px;
@@ -33,7 +35,7 @@ body {
 #results {
     text-align: center;
     background-color: whitesmoke;
-    height: 500px;
+    height: 400px;
     width: 80%;
     margin-left: 10%;
     
@@ -43,7 +45,7 @@ body {
 #timeRemaining,
 #question {
     color: black;
-    padding: 30px;
+    padding: 10px;
     text-align: center;
     opacity: 80%;
     border-bottom: dashed;
@@ -62,10 +64,26 @@ body {
     width: 80%;
 }
 .results {
-    padding: 20px;
-    font-size: 25px;
+    padding: 8px;
+    font-size: 14px;
 }
 
 .images {
     margin-top: 10px;
+    max-width: 300px;
+    max-height: 250px;
+}
+#startPageImage {
+    margin-top: 20px;
+    width: 55%;
+    height: 250px;
+}
+
+
+
+@media (min-width: 576px){
+.jumbotron {
+    padding: 2rem 1rem;
+    padding-bottom: 5px;
+}
 }

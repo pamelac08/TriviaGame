@@ -9,7 +9,7 @@ $(document).ready(function() {
         "Q6: When did coffee get its start as a beverage?", 
         "Q7: Roughly how many coffee beans are needed to make one espresso?", 
         "Q8: Which country produces about one third of the world's coffee?", 
-        "Q9: In America, drinking coffee became prevalent in late 18th century because:", 
+        "Q9: In America, drinking coffee became prevalent in the late 18th century because:", 
         "Q10: Which US city has the most coffee shops per capita?", 
     ]
     var answerKey = [
@@ -22,7 +22,7 @@ $(document).ready(function() {
         ["12", "25", "42", "60"],
         ["Ethiopia", "Colombia", "Indonesia", "Brazil"],
         ["There was little tea available in most households.", "Taxes on tea which resulted in the Boston Tea Party.", "Protests against alcohol consumption.", "Belief it had healing properties."],
-        ["Seattle", "Los Angeles", "New York", "New Orleans"]
+        ["Seattle", "Los Angeles", "New York", "Chicago"]
     ];
     
     var correctAnswer = [
@@ -38,7 +38,6 @@ $(document).ready(function() {
         answerKey[9][0]
     ];
     
-    
     var correct = 0;
     var incorrect = 0;
     var noAnswer = 0;
@@ -47,7 +46,6 @@ $(document).ready(function() {
     var countdownInterval;
     var clockRunning = false;
     var selectedAnswer;
-    // var ifSelected = false;
     
     var questionNumber=0;
     
@@ -59,32 +57,27 @@ $(document).ready(function() {
     function display() {
         $(this).hide();
         $("#results").hide();
-    
+        $("#start-page-image").hide();
     
         $("#containerInside").prepend("<div id='answers'></div>")
         $("#containerInside").prepend("<div id='question'></div>")
         $("#containerInside").prepend("<div id='timeRemaining'></div>");
         $("#timeRemaining").text("Time Remaining: " + time + " seconds"); 
-      
-        // $("#containerInside").append("<div id='image'></div>")
     
-        
-        
         $("#answers").append("<button class='answer' id='answer1'></button><br>")
         $("#answers").append("<button class='answer' id='answer2'></button><br>")
         $("#answers").append("<button class='answer' id='answer3'></button><br>")
         $("#answers").append("<button class='answer' id='answer4'></button><br>")
     
         $(".answer").on("click", onClickAnswer);
-    
+
+        $("#results").append("<img class='images' id='imageLastPage' src='assets/images/coffee_lastpage.gif'>")
         $("#results").append("<div class='results' id='correct'></div>");
         $("#results").append("<div class='results' id='incorrect'></div>");
         $("#results").append("<div class='results' id='noAnswer'></div>");
-        
     
         $("#results").append("<button type='button' id='restartButton'>Restart</button>");
         $("#restartButton").click(resetGame);
-    
     }
     
     function play() {
@@ -105,10 +98,7 @@ $(document).ready(function() {
         stopCountdown();
     
          //save value of button clicked
-         selectedAnswer = $(this).text();
-         //console.log(selectedAnswer);
-                    
-                   
+         selectedAnswer = $(this).text();         
      
          if (selectedAnswer === correctAnswer[questionNumber]) {
              correct++;
@@ -121,11 +111,14 @@ $(document).ready(function() {
              console.log('Incorrect: ', incorrect);
          }
         
-                    // $("#answers").hide();
-                    // showImages();
         runAfterQuestion();
     }
 
+
+//I'm sure there's a more efficient way to display these images (in the showImages function) 
+//after the guess/no answer, but it was the last thing I worked on and this works. 
+//So at the potential risk of breaking everything and not having enough time to fix it, 
+//I'm leaving this as is...
 
     function showImages() {
         if (questionNumber == 0){
@@ -159,10 +152,7 @@ $(document).ready(function() {
             $("#images").html("<img class='images' id='1' src='assets/images/coffee_q10.gif'>");
         }
 
-        // runAfterQuestion();
     }
-    
-    
     
     
     function runAfterNoAnswer() {
@@ -177,10 +167,10 @@ $(document).ready(function() {
         showImages();
 
         if (questionNumber == 9) {
-            setTimeout(displayAnswers, 3000);
+            setTimeout(displayAnswers, 5000);
         }
         else {
-            setTimeout(resetAndPlay, 3000);
+            setTimeout(resetAndPlay, 5000);
         }
       }
     
@@ -188,15 +178,12 @@ $(document).ready(function() {
         time = 20;
         questionNumber++;
         $("#images").html("");
-        // console.log('New question number: ', questionNumber);
         play();
     }
     
     function resetGame() {
         $("#results").hide();
         $("#containerInside").show();
-        // $("#answers").show();
-        // $("#images").clear();
         questionNumber = 0;
         correct = 0;
         incorrect = 0
@@ -211,11 +198,13 @@ $(document).ready(function() {
         $("#images").html("");
         $("#containerInside").hide();
         $("#results").show();
+
     
         $('#correct').html("Correct Answers: " + correct);
         $('#incorrect').html("Inorrect Answers: " + incorrect);
         $('#noAnswer').html("No Answer: " + noAnswer);
-    
+
+        // $("#results").append("<img class='images' id='imageLastPage' src='assets/images/coffee_lastpage.gif'>")
     }
     
     
