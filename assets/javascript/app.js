@@ -53,7 +53,6 @@ $(document).ready(function() {
     $("#startButton").on("click", display);
     $("#startButton").on("click", play);
     
-    
     function display() {
         $(this).hide();
         $("#results").hide();
@@ -151,7 +150,6 @@ $(document).ready(function() {
         if (questionNumber == 9){
             $("#images").html("<img class='images' id='1' src='assets/images/coffee_q10.gif'>");
         }
-
     }
     
     
@@ -192,26 +190,18 @@ $(document).ready(function() {
         play();
     }
     
-    
     function displayAnswers() {
         stopCountdown();
         $("#images").html("");
         $("#containerInside").hide();
         $("#results").show();
-
     
         $('#correct').html("Correct Answers: " + correct);
         $('#incorrect').html("Inorrect Answers: " + incorrect);
         $('#noAnswer').html("No Answer: " + noAnswer);
-
-        // $("#results").append("<img class='images' id='imageLastPage' src='assets/images/coffee_lastpage.gif'>")
     }
     
-    
-    
-    
-    
-    
+
     //start countdown
     function startCountdown () {
     if (!clockRunning) {
@@ -223,7 +213,6 @@ $(document).ready(function() {
     function count() {
         time--;
         var converted = timeConverter(time);
-    //    console.log(converted);
     
         if (time <= 0) {
             stopCountdown();
