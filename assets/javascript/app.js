@@ -1,36 +1,44 @@
 
 
-
+$(document).ready(function() {
 
 var questionKey = [ 
-    "question 1", 
-    "question 2", 
-    "question 3", 
-    "question 4", 
-    "question 5", 
-    "question 6", 
-    "question 7", 
-    "question 8", 
-    "question 9", 
-    "question 10", 
+    "Q1: What country is accredited for first giving us coffee?", 
+    "Q2: Before coffee beans were used to make a drink, East Africans used the berries to do what?", 
+    "Q3: What color is a ripe coffee bean?", 
+    "Q4: Which is the only US state that coffee is grown commercially?", 
+    "Q5: The most expensive coffee in the world is 'Kopi Luwak.' What kind of coffee is it?", 
+    "Q6: When did coffee get its start as a beverage?", 
+    "Q7: Roughly how many coffee beans are needed to make one espresso?", 
+    "Q8: Which country produces about one third of the world's coffee?", 
+    "Q9: In America, drinking coffee became prevalent in late 18th century because:", 
+    "Q10: Which US city has the most coffee shops per capita?", 
 ]
 var answerKey = [
-    ["answer1.1", "answer1.2", "answer1.3", "answer1.4"],
-    ["answer2.1", "answer2.2", "answer2.3", "answer2.4"],
-    ["answer3.1", "answer3.2", "answer3.3", "answer3.4"],
-    ["answer4.1", "answer4.2", "answer4.3", "answer4.4"],
-    ["answer5.1", "answer5.2", "answer5.3", "answer5.4"],
-    ["answer6.1", "answer6.2", "answer6.3", "answer6.4"],
-    ["answer7.1", "answer7.2", "answer7.3", "answer7.4"],
-    ["answer8.1", "answer8.2", "answer8.3", "answer8.4"],
-    ["answer9.1", "answer9.2", "answer9.3", "answer9.4"],
-    ["answer10.1", "answer10.2", "answer10.3", "answer10.4"]
+    ["Indonesia", "Italy", "Colombia", "Ethiopia"],
+    ["Make a snack mixed with animal fat", "Dye clothes", "Make a muscle balm, like an early Ben-Gay", "Enhance the feed of plow oxen"],
+    ["black", "red", "green", "blue"],
+    ["California", "Florida", "Hawaii", "Oregon"],
+    ["Coffee from a tree on the top of a 16,400 feet (5,000m) mountain", "Coffee from a Sumatran wild-cat that cannot digest coffee beans", "A very rare white coffee", "Character in a Dr. Seuss story who does not like purple coffee"],
+    ["1000 B.C.", "1000 A.D.", "14th century A.D.", "17th century A.D."],
+    ["12", "25", "42", "60"],
+    ["Ethiopia", "Colombia", "Indonesia", "Brazil"],
+    ["There was little tea available in most households.", "Taxes on tea which resulted in the Boston Tea Party.", "Protests against alcohol consumption.", "Belief it had healing properties."],
+    ["Seattle", "Los Angeles", "New York", "New Orleans"]
 ];
 
-var correctAnswer = [answerKey[0][0], answerKey[1][0], answerKey[2][0], 
-answerKey[3][0], answerKey[4][0], answerKey[5][0], answerKey[6][0], answerKey[7][0], 
-answerKey[8][0], answerKey[9][0]];
-
+var correctAnswer = [
+    answerKey[0][3], 
+    answerKey[1][0], 
+    answerKey[2][1], 
+    answerKey[3][2], 
+    answerKey[4][1], 
+    answerKey[5][1], 
+    answerKey[6][2], 
+    answerKey[7][3], 
+    answerKey[8][1], 
+    answerKey[9][0]
+];
 
 
 var correct = 0;
@@ -50,46 +58,30 @@ $("#startButton").on("click", display);
 $("#startButton").on("click", play);
 
 
-function onClickAnswer() {
-    stopCountdown();
-
-     //save value of button clicked
-     selectedAnswer = $(this).text();
-     //console.log(selectedAnswer);
- 
-     if (selectedAnswer === correctAnswer[questionNumber]) {
-         correct++;
-         $("#question").text("That is correct!");
-         console.log('Correct: ', correct);
-     }
-     else {
-         incorrect++;
-         $("#question").text("Oh no, that's incorrect! The correct answer is: " + correctAnswer[questionNumber]);
-         console.log('Incorrect: ', incorrect);
-     }
-     
-    runAfterQuestion();
-}
-
-
 function display() {
     $(this).hide();
     $("#results").hide();
 
-    $("#container").append("<div id='timeRemaining'></div>");
-    $("#timeRemaining").text("Time Remaining: " + time + " seconds"); 
 
-    $("#container").append("<div id='question'></div>")
-    $("#container").append("<button class='answer' id='answer1'></button><br>")
-    $("#container").append("<button class='answer' id='answer2'></button><br>")
-    $("#container").append("<button class='answer' id='answer3'></button><br>")
-    $("#container").append("<button class='answer' id='answer4'></button><br>")
+    $("#containerInside").prepend("<div id='answers'></div>")
+    $("#containerInside").prepend("<div id='question'></div>")
+    $("#containerInside").prepend("<div id='timeRemaining'></div>");
+    $("#timeRemaining").text("Time Remaining: " + time + " seconds"); 
+  
+    // $("#containerInside").append("<div id='image'></div>")
+
+    
+    
+    $("#answers").append("<button class='answer' id='answer1'></button><br>")
+    $("#answers").append("<button class='answer' id='answer2'></button><br>")
+    $("#answers").append("<button class='answer' id='answer3'></button><br>")
+    $("#answers").append("<button class='answer' id='answer4'></button><br>")
 
     $(".answer").on("click", onClickAnswer);
 
-    $("#results").append("<div id='correct'></div>");
-    $("#results").append("<div id='incorrect'></div>");
-    $("#results").append("<div id='noAnswer'></div>");
+    $("#results").append("<div class='results' id='correct'></div>");
+    $("#results").append("<div class='results' id='incorrect'></div>");
+    $("#results").append("<div class='results' id='noAnswer'></div>");
     
 
     $("#results").append("<button type='button' id='restartButton'>Restart</button>");
@@ -101,6 +93,7 @@ function play() {
 
     startCountdown();
 
+
     console.log('Question Number: ', questionNumber);
     $("#question").html(questionKey[questionNumber]);
     $("#answer1").html(answerKey[questionNumber][0]);
@@ -110,9 +103,37 @@ function play() {
     
 }
 
+function onClickAnswer() {
+    stopCountdown();
+
+     //save value of button clicked
+     selectedAnswer = $(this).text();
+     //console.log(selectedAnswer);
+                // $("#answers").hide();
+               
+ 
+     if (selectedAnswer === correctAnswer[questionNumber]) {
+         correct++;
+         $("#question").text("That is correct!");
+         console.log('Correct: ', correct);
+     }
+     else {
+         incorrect++;
+         $("#question").html("Oh no, that's incorrect! <br> The correct answer is: " + correctAnswer[questionNumber]);
+         console.log('Incorrect: ', incorrect);
+     }
+     
+    // showImages();
+    runAfterQuestion();
+}
+
+
+
+
 function runAfterNoAnswer() {
     noAnswer++; 
     console.log('No Answer: ', noAnswer);
+    $("#question").html("Oh no, out of time! <br> The correct answer is: " + correctAnswer[questionNumber]);
     runAfterQuestion();
   }
 
@@ -121,30 +142,36 @@ function runAfterQuestion() {
         displayAnswers();
     }
     else {
-        setTimeout(resetAndPlay, 4000);
+        setTimeout(resetAndPlay, 3000);
     }
   }
 
 function resetAndPlay() {
-    time = 30;
+    time = 20;
     questionNumber++;
+                // $("#answers").show();
+                // $("#images").clear();
     // console.log('New question number: ', questionNumber);
     play();
 }
 
 function resetGame() {
     $("#results").hide();
-    $("#container").show();
+    $("#containerInside").show();
+    // $("#answers").show();
+    // $("#images").clear();
     questionNumber = 0;
     correct = 0;
     incorrect = 0
     noAnswer = 0;
+    time = 20;
     play();
 }
 
 
 function displayAnswers() {
-    $("#container").hide();
+    stopCountdown();
+    $("#containerInside").hide();
     $("#results").show();
 
     $('#correct').html("Correct Answers: " + correct);
@@ -152,6 +179,16 @@ function displayAnswers() {
     $('#noAnswer').html("No Answer: " + noAnswer);
 
 }
+
+// function showImages() {
+//     if (questionNumber = 0){
+//         $("#images").append("<img class='images' id='0' src='assets/images/coffee_q1.gif'>");
+//     }
+//     if (questionNumber = 1){
+//         $("#images").append("<img class='images' id='1' src='assets/images/coffee_q2.gif'>");
+//     }
+//     runAfterQuestion();
+// }
 
 
 
@@ -203,3 +240,4 @@ function timeConverter(t) {
     return minutes + ":" + seconds;
   }
   
+});
