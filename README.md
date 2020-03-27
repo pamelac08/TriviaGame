@@ -1,13 +1,20 @@
-# TriviaGame
-HW#5
+#  Coffee Trivia Game
+Coding Boot-camp Homework #5: More jQuery
 
-JavaScript Assignment 2:
 
--Creating a Trivia game using JavaScript for the logic and jQuery to manipulate HTML.
--Option Two: Advanced Assignment (Timed Questions)
-    -You'll create a trivia game that shows only one question until the player answers it or their time runs out.
-    -If the player selects the correct answer, show a screen congratulating them for choosing the right option. After a few seconds, display the next question -- do this without user input.
-    -The scenario is similar for wrong answers and time-outs.
-    -If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
-    -If the player chooses the wrong answer, tell the player they selected the wrong option and then display the correct answer. Wait a few seconds, then show the next question.
-    -On the final screen, show the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
+### Deployed via Git Hub Pages:
+https://pamelac08.github.io/TriviaGame/
+
+
+
+### Project Description:
+
+An application for further practice using Javascript, jQuery as well as timers for logic and manipulating HTML
+
+* This application takes the player through a coffee-themed trivia game that displays one question at a time until the player answers it or their time runs out.
+* The player has 20 seconds to answer each question.  Once the player selects an answer or the timer runs out, the game will automatically move to the next question after 4 seconds
+* At the end, the game will display the number of correct, incorrect, and not answered questions - with the option to restart the game
+
+
+
+Primarily used click event listeners, conditional statements, and timers to run this application.
